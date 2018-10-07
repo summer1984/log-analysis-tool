@@ -8,9 +8,7 @@ The program connects to a PostgreSQL database that contains newspaper articles a
 
 The program runs from the command line and does not take any input from the user.
 
-## Getting Started
-
-#### Requirements
+### Requirements
 
 ```
 - Python 3.4+
@@ -19,20 +17,32 @@ The program runs from the command line and does not take any input from the user
 - PostgreSQL
 ```
 
-##### Tables
 
-###### Authors
+### Getting Started
 
-name | bio | id
+The database includes three tables: 
 
-###### Articles
+  * Authors
 
-author | title  | slug | text | lead | body | time | id
+  > name | bio | id
 
-###### Public Log
-path | ip | method | status | time | id 
+  * Articles
 
+  > author | title  | slug | text | lead | body | time | id
 
+  * Public Log
+  > path | ip | method | status | time | id 
+
+Create a view of the log to return data about the three articles accessed the most
+
+  ```sql
+  create view toparticles as
+  select substring(path from 10), count(path) as hits
+  from log
+  group by path
+  order by hits desc
+  limit 3 offset 1;
+  ```
 
 ## PostgreSQL documentation
 
