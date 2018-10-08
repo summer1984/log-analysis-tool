@@ -36,7 +36,7 @@ The database includes three tables:
 Create a view of the log to return data about the three articles accessed the most
 
   ```sql
-  create view toparticles as
+  create view topthree as
   select substring(path from 10), count(path) as hits
   from log
   group by path
