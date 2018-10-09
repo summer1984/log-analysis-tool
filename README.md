@@ -1,3 +1,5 @@
+** Class Project **
+
 # Top Articles
 
 This is an internal reporting tool for a newspaper site to discover what kind of articles the site's readers like.
@@ -22,16 +24,9 @@ The program runs from the command line and does not take any input from the user
 
 The database includes three tables: 
 
-  * Authors
-
-  > name | bio | id
-
   * Articles
-
-  > author | title  | slug | text | lead | body | time | id
-
-  * Public Log
-  > path | ip | method | status | time | id 
+  * Authors
+  * Log
 
 Create a view of the log to return data about the three articles accessed the most
 
