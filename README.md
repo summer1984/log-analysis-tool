@@ -22,13 +22,13 @@ The program runs from the command line and does not take any input from the user
 
 ### Getting Started
 
-The database includes three tables: 
+The database includes these three tables: 
 
-  * Articles
-  * Authors
+  * Articles 
+  * Authors 
   * Log
 
-Create a view of the log to return data about the three articles accessed the most
+Create the following view
 
   ```sql
 CREATE VIEW hits as
