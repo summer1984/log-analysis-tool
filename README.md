@@ -31,12 +31,11 @@ The database includes three tables:
 Create a view of the log to return data about the three articles accessed the most
 
   ```sql
-  create view topthree as
-  select substring(path from 10), count(path) as hits
-  from log
-  group by path
-  order by hits desc
-  limit 3 offset 1;
+CREATE VIEW hits as
+SELECT path, count(*) FROM log
+WHERE path != '/'
+GROUP BY path
+ORDER BY count desc;
   ```
 
 ## PostgreSQL documentation
