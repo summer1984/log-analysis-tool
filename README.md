@@ -31,13 +31,13 @@ The database includes these three tables:
 Create the following view
 
   ```sql
-CREATE VIEW hits as
-SELECT path, count(*) FROM log
+CREATE VIEW popular as
+SELECT substring(path from 10), count(path) as hits
+FROM log
 WHERE path != '/'
 GROUP BY path
-ORDER BY count desc;
+ORDER BY hits desc;
   ```
-
 ## PostgreSQL documentation
 
 Learn more about the kinds of queries that you can use https://www.postgresql.org/docs/9.5/static/index.html
