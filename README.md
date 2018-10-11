@@ -28,7 +28,7 @@ The database includes these three tables:
   * Authors 
   * Log
 
-Create the following view
+Create the following views
 
   ```sql
 CREATE VIEW popular as
@@ -38,6 +38,13 @@ WHERE path != '/'
 GROUP BY path
 ORDER BY hits desc;
   ```
+  
+```sql
+CREATE VIEW bylines as
+SELECT name, slug
+FROM authors, articles
+WHERE authors.id = articles.author
+```
 ## PostgreSQL documentation
 
 Learn more about the kinds of queries that you can use https://www.postgresql.org/docs/9.5/static/index.html
