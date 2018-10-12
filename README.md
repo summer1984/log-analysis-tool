@@ -1,8 +1,8 @@
 ** Class Project **
 
-# Top Articles
+# Log Analysis Tool
 
-This is an internal reporting tool for a newspaper site to discover what kind of articles the site's readers like.
+The log analysis reporting tool prints out reports (in plain text) based on the data in a database. The tool is a Python program using the psycopg2 module to connect to the database.
 
 #### How it Works
 
