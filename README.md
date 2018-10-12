@@ -21,7 +21,7 @@ The program runs from the command line and does not take any input from the user
 
 ### Example Tables
 
-Download the newsdb.sql file to populate the following tables in the database
+Download the newsdata.sql file to populate the following tables in the database
 
   * Articles 
   * Authors 
