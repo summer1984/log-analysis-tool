@@ -2,7 +2,7 @@
 
 # Log Analysis Tool
 
-The log analysis reporting tool prints out reports (in plain text) based on the data in a database. The tool is a Python program using the psycopg2 module to connect to the database.
+The log analysis reporting tool prints plain-text reports based on the data in a database. The tool is a Python program using the psycopg2 module to connect to the database.
 
 ## Requirements
 
@@ -13,13 +13,13 @@ The log analysis reporting tool prints out reports (in plain text) based on the 
 - PostgreSQL
 ```
 
-## How it Works
+## Getting Started
 
-In the following example, the program connects to a PostgreSQL database containing newspaper articles and web server data. The code uses SQL queries to analyze data and answer questions about the site's user activity.
+Try out the reporting tool with a sample PostgreSQL database containing newspaper articles and web server data. The code uses SQL queries to analyze data and answer questions about the site's user activity.
 
 The program runs from the command line and does not take any input from the user.
 
-### Example Tables
+### Installation
 
 Download the newsdata.sql file to populate the following tables in the database
 
