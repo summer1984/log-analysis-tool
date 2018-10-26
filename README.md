@@ -2,7 +2,7 @@
 
 # Log Analysis Tool
 
-The log analysis reporting tool prints plain-text reports based on the data in a database. The tool is a Python program using the psycopg2 module to connect to the database.
+The log analysis reporting tool is a Python program run from the command line. Using the psycopg2 module and SQL queries, the program analyzes data and prints plain-text reports about the site's user activity.
 
 ## Requirements
 
@@ -15,19 +15,21 @@ The log analysis reporting tool prints plain-text reports based on the data in a
 
 ## Getting Started
 
-Try out the reporting tool with a sample PostgreSQL database containing newspaper articles and web server data. The code uses SQL queries to analyze data and answer questions about the site's user activity.
-
-The program runs from the command line and does not take any input from the user.
+Try out the reporting tool with a sample PostgreSQL database containing newspaper articles and web server data. 
 
 ### Installation
 
-Download the newsdata.sql file to populate the following tables in the database
+Create a test environment using Vagrant and VirtualBox 
+
+> Install Vagrant and Virtualbox for your operating system – Ensure that the versions you download are compatible!
+
+Once you've launched your virtual machine, download the newsdb.py program file and newsdata.sql file to populate the following tables in the sample database
 
   * Articles 
   * Authors 
   * Log
 
-Create the following views
+Then create the following views
 
   ```sql
 CREATE VIEW popular as
@@ -56,7 +58,8 @@ GROUP BY day;
 CREATE VIEW errors as
 SELECT date_trunc('day', time) as day, count(status) as errors 
 FROM log
-WHERE status like '%4%' group by day;
+WHERE status like '%4%' 
+GROUP BY day;
 ```
 
 ```sql
@@ -65,6 +68,10 @@ SELECT errors.day, round(errors.errors * 100.00/totals.totals, 2) as percent
 FROM errors, totals
 WHERE errors.day = totals.day;
 ```
+
+Run the newsdby.py file from within the test environment to generate a report
+
+> python newsdb.py
 
 ## Authors
 
