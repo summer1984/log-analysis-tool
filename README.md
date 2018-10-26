@@ -44,9 +44,27 @@ SELECT name, slug
 FROM authors, articles
 WHERE authors.id = articles.author
 ```
-## PostgreSQL documentation
 
-Learn more about the kinds of queries that you can use https://www.postgresql.org/docs/9.5/static/index.html
+```sql
+CREATE VIEW totals as 
+SELECT date_trunc('day', time) as day, count(status) as totals 
+FROM log 
+GROUP BY day;
+```
+
+```sql
+CREATE VIEW errors as
+SELECT date_trunc('day', time) as day, count(status) as errors 
+FROM log
+WHERE status like '%4%' group by day;
+```
+
+```sql
+CREATE VIEW final as
+SELECT errors.day, round(errors.errors * 100.00/totals.totals, 2) as percent 
+FROM errors, totals
+WHERE errors.day = totals.day;
+```
 
 ## Authors
 
