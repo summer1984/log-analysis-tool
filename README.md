@@ -4,7 +4,7 @@
 
 The log analysis reporting tool is a Python program run from the command line. 
 
-Using the psycopg2 module and SQL queries, the program analyzes data and prints plain-text reports about the site's user activity.
+Using the psycopg2 module and SQL queries, the program analyzes data and prints plain-text reports about a site's user activity.
 
 ## Requirements
 
