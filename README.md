@@ -19,9 +19,9 @@ Using the psycopg2 module and SQL queries, the program analyzes data and prints 
 
 Try out the reporting tool with a sample PostgreSQL database containing newspaper articles and web server data. 
 
-## Create a Test Environment
+### Create a virtual environment with Vagrant and Virtualbox
 
-Use a virtual machine (VM) to run the program. Follow the [Getting Started](https://www.vagrantup.com/intro/getting-started/) guide to install the required versions of and Virtualbox for your operating system. 
+Follow the [Getting Started](https://www.vagrantup.com/intro/getting-started/) guide to install and set up the required versions of Vagrant and Virtualbox for your operating system. 
 
 ### Download the VM configuration
 
