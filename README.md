@@ -15,55 +15,45 @@ Using the psycopg2 module and SQL queries, the program analyzes data and prints 
 - PostgreSQL
 ```
 
-## Getting Started
+# Getting Started
 
 Try out the reporting tool with a sample PostgreSQL database containing newspaper articles and web server data. 
 
-#### Create a Test Environment
+## Create a Test Environment
 
-Use a virtual machine (VM) to run the program. 
+Use a virtual machine (VM) to run the program. Follow the [Getting Started](https://www.vagrantup.com/intro/getting-started/) guide to install the required versions of and Virtualbox for your operating system. 
 
-Follow the [Getting Started](https://www.vagrantup.com/intro/getting-started/) guide to install the required versions of and Virtualbox for your operating system. 
-
-#### Download the VM configuration
+### Download the VM configuration
 
 Download and unzip the configuration file [FSND-Virtual-Machine.zip](https://s3.amazonaws.com/video.udacity-data.com/topher/2018/April/5acfbfa3_fsnd-virtual-machine/fsnd-virtual-machine.zip). This will give you a new directory called FSND-Virtual-Machine. 
 
-Change to the ***FSND-Virtual-Machine*** directory
+### Change to the VM directory
 
 ```$ cd FSND-Virtual Machine```
 
-Change to the ***vagrant*** directory
-
 ```$ cd vagrant```
 
-#### Start the virtual machine
+### Start the virtual machine and log in
 
-From inside the ***vagrant*** directory, run the command
+From inside the ***vagrant*** directory
 
 ```$ vagrant up```
 
-#### Log in to the VM
-
-When you get your shell prompt back, run
-
 ```$ vagrant ssh``` 
 
-### Set up the database
+## Set up the database
 
-#### Download the data
+### Download the data
 
-Download and unzip the [data file](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip)
+Download and unzip the [data file](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip). Move the files into the ***vagrant*** directory.
 
-If not there already, move the files into the Vagrant directory shared with your VM.
+### Create the database tables
 
-#### Create the database tables
-
-`cd` into the Vagrant directory and run the following command to populate the database tables Articles, Authors, Log
+Run the following command from inside the ***vagrant*** directory to populate the database tables Articles, Authors, Log
 
 `$ psql -d news -f newsdata.sql`
 
-##### Create the following views 
+### Create the views 
 
   ```sql
 CREATE VIEW popular as
@@ -99,9 +89,7 @@ FROM errors, totals
 WHERE errors.day = totals.day;
 ```
 
-#### Generate a report
-
-Run the _newsdby.py_ file from within the test environment to generate a report
+### Generate a report
 
 ```$ python newsdb.py```
 
