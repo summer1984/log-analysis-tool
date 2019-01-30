@@ -3,8 +3,6 @@
 import psycopg2
 import bleach
 
-# TODO refactor - connect once/create connection function
-
 # def test_connection():
 #     '''Tests connection to the database'''
 #
@@ -12,55 +10,73 @@ import bleach
 #     c = db.cursor()
 #     c.execute("select * from articles limit 5")
 
+# IN PROGRESS
 
-def get_top_three_articles():
-    '''Prints the three most popular articles of all time'''
+"""
+def connect(database_name):
+    '''Connect to the PostgreSQL database. Returns a database connection.'''
+    try:
+        db = psycopg2.connect("dbname={}".format(database_name))
+        c = db.cursor()
+        return db, c
+    except psycopg2.Error as e:
+        print "Unable to connect to database"
+        # Exit program
+        sys.exit(1)
+        
+        # TODO - throw an error instead of exit       
 
-    db = psycopg2.connect("dbname=news")
-    c = db.cursor()
-    # query for the top three articles using 'popular' view
-    query = ("select * from popular limit 3")
+db, c = connect(database_name)
+        
+def get_query_results(query):
+    # connect to the database, get cursor
+    
+    # execute
     c.execute(query)
-    # Fetch the results of the query then close the db connection
-    articles = c.fetchall()
-    db.close()
-    # Print the article title and no. of hits
-    for article in articles:
-        title_format = article[0]
-        title = title_format.title()
-        hits = article[1]
-        print("{0} – {1} views".format(title, hits))
+    # commit
+    
+    # store the results
+    results = c.fetchall()
+    #close the connection
+    db.close() 
+    return results
 
-    def get_top_authors():
-        ''''Prints which authors get the most page views'''
 
-        db = psycopg2.connect("dbname=news")
-        c = db.cursor()
-        query = ("select * from authorviews limit 5")
-        c.execute(query)
-        authors = c.fetchall()
-        db.close()
-        # author = authors[0]
-        for author in authors:
-            print("{} – {} views".format(author[0], author[1]))
+# QUERIES
 
-    def get_errors():
-        '''Prints days when more than 1% of requests led to errors'''
+# top three articles
+top_articles = ("select * from popular limit 3")
 
-        db = psycopg2.connect("dbname=news")
-        c = db.cursor()
-        query = ("select to_char(day, 'Month DD, YYYY') as date, percent from final where percent > 1;")
-        c.execute(query)
-        errors = c.fetchall()
-        db.close()
-        for error in errors:
-            print("{} – {}% errors".format(error[0], error[1]))
+# popular authors
+top_authors = ("select * from authorviews limit 5")
 
-    print("What are the most popular three articles of all time? \n")
-    get_top_three_articles()
+# days with > 1 % errors
+bad_days = ("select to_char(day, 'Month DD, YYYY') as date, percent from final where percent > 1;")
+    
+results = get_query_results(   )
 
-    print("\nWho are the most popular article authors of all time?\n")
-    get_top_authors()
+>> ARTICLES
+title_format = article[0]
+title = title_format.title()
+hits = article[1]
+print("{0} – {1} views".format(title, hits))
 
-    print("\nOn which days did more than 1% of requests lead to errors?")
-    get_errors()
+>> AUTHORS
+for author in authors:
+    print("{} – {} views".format(author[0], author[1]))
+    
+>> ERRORS
+for error in errors:
+    print("{} – {}% errors".format(error[0], error[1]))
+
+
+print("What are the most popular three articles of all time? \n")
+#
+
+print("\nWho are the most popular article authors of all time?\n")
+#
+
+print("\nOn which days did more than 1% of requests lead to errors?")
+#
+
+"""
