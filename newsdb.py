@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 
+# IN PROGRESS
+
 import psycopg2
 import bleach
 
@@ -9,8 +11,6 @@ import bleach
 #     db = psycopg2.connect("dbname=news")
 #     c = db.cursor()
 #     c.execute("select * from articles limit 5")
-
-# IN PROGRESS
 
 """
 def connect(database_name):
@@ -40,43 +40,31 @@ def get_query_results(query):
     #close the connection
     db.close() 
     return results
-
-
-# QUERIES
-
-# top three articles
-top_articles = ("select * from popular limit 3")
-
-# popular authors
-top_authors = ("select * from authorviews limit 5")
-
-# days with > 1 % errors
-bad_days = ("select to_char(day, 'Month DD, YYYY') as date, percent from final where percent > 1;")
     
-results = get_query_results(   )
 
->> ARTICLES
+# Call get_query_results and print results based on query
+
+results = get_query_results("Send in query here")
+
+
+# ARTICLES - top three articles
+top_articles = ("select * from popular limit 3")
 title_format = article[0]
 title = title_format.title()
 hits = article[1]
 print("{0} – {1} views".format(title, hits))
+print("What are the most popular three articles of all time? \n")
 
->> AUTHORS
+
+# AUTHORS - popular authors
+top_authors = ("select * from authorviews limit 5")
 for author in authors:
     print("{} – {} views".format(author[0], author[1]))
+print("\nWho are the most popular article authors of all time?\n")
+
     
->> ERRORS
+# ERRORS - days with > 1 % errors
+bad_days = ("select to_char(day, 'Month DD, YYYY') as date, percent from final where percent > 1;")
 for error in errors:
     print("{} – {}% errors".format(error[0], error[1]))
-
-
-print("What are the most popular three articles of all time? \n")
-#
-
-print("\nWho are the most popular article authors of all time?\n")
-#
-
 print("\nOn which days did more than 1% of requests lead to errors?")
-#
-
-"""
